@@ -1,45 +1,42 @@
 import React, { useState } from 'react';
-import { Button, Dimensions, ImageBackground, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Dimensions, Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import Footer from '../components/auth/Footer';
+import Header from '../components/auth/Header';
 
-export default function LoginScreen(){
+export default ({navigation}) => {
     const [showAlert, setShoeAlert] = useState(false);
 
   return(
     <View style={styles.container}>
-        <View style={styles.header}>
-            <Text style={styles.titleH1}>Iniciar Sesión</Text>
-            <View  style={styles.imgHeaderContainer}>
-                <ImageBackground style={styles.imgHeader} source={require('../../assets/img/icon-wallet.svg')}/>
-            </View>
-            <Text style={styles.desc}>Ingresa tu usuario y contraseña para poder utilizar el monedero digital</Text>
-        </View>
+        <Header title="Registrarse" desc="Ingresa tus satos para crear tu cuenta">
+            <Image style={styles.imgHeader} source={require('../../assets/img/icon-wallet.svg')}/>
+        </Header>
         <View style={styles.body}>
             <View style={styles.form}>
                 <View style={styles.inputField}>
-                    <ImageBackground style={styles.icon} source={require('../../assets/img/user.svg')} />
+                    <Image style={styles.icon} source={require('../../assets/img/user.svg')} />
                     <TextInput style={styles.input} placeholder="Ingresa tu usuario" placeholderTextColor="rgb(190, 190, 190)"/>
                 </View>
                 <View style={styles.inputField}>
-                    <ImageBackground style={styles.icon} source={require('../../assets/img/lock.svg')} />
+                    <Image style={styles.icon} source={require('../../assets/img/lock.svg')} />
                     <TextInput style={styles.input} placeholder="Ingresa tu contraseña" placeholderTextColor="rgb(190, 190, 190)"/>
+                </View>
+                <View style={styles.inputField}>
+                    <Image style={styles.icon} source={require('../../assets/img/lock.svg')} />
+                    <TextInput style={styles.input} placeholder="Confirmar contraseña" placeholderTextColor="rgb(190, 190, 190)"/>
                 </View>
                 {
                     showAlert ? 
-                    <Text style={styles.alert}>Credenciales no existen o son incorrectas!</Text>
+                    <Text style={styles.alert}>Tienes que completar todos los campos!</Text>
                     :
                     <Text> </Text>
                 }
                 <View style={styles.btnSubmit}>
-                    <Button title="ingresar" onPress={ () => setShoeAlert(true)}/>
+                    <Button title="registrarse" onPress={ () => setShoeAlert(true)}/>
                 </View>
             </View>
         </View>
-        <View style={styles.footer}>
-            <Text>¿No tienes una cuenta?</Text>
-            <Pressable>
-                <Text style={styles.link}>Registrarse</Text>
-            </Pressable>
-        </View>
+        <Footer desc="¿Ya tienes una cuenta?" btnTitle="Iniciar sesion" onPress={() => navigation.navigate('Signin')}/>
     </View>
   )
 }
@@ -51,20 +48,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         paddingHorizontal: 20
     },
-    titleH1:{
-        fontSize: 30,
-        fontWeight: '600'
-    },
-    imgHeaderContainer:{
-        paddingVertical: 15
-    },
     imgHeader: {
         width: Dimensions.get('window').width - 245,
         height: Dimensions.get('window').width - 245,
-    },
-    desc:{
-        textAlign: 'center',
-        fontSize: 17
     },
     alert: {
         color: 'red',
@@ -73,10 +59,6 @@ const styles = StyleSheet.create({
     icon: {
         width: 25,
         height: 25,
-    },
-    header: {
-        alignItems: 'center',
-        
     },
     body:{
         alignSelf: 'stretch'

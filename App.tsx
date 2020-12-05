@@ -1,9 +1,13 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import LoginScreen from './src/pages/Login';
+import { NavigationContainer } from '@react-navigation/native';
+
+import AuthStack from './src/routes/auth/AuthStack';
 
 export default () => {
   return (
-    <LoginScreen/>
+    <NavigationContainer>
+      <AuthStack/>
+    </NavigationContainer>
   );
 }
