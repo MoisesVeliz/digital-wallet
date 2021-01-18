@@ -1,13 +1,13 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 
-export default ({title, desc, children}) =>{
+export default ({title, desc, logoUrl}) =>{
 
     return(
     <View style={styles.header}>
         <Text style={styles.titleH1}>{title}</Text>
         <View  style={styles.imgHeaderContainer}>
-            {children}
+            <Image style={styles.imgHeader} source={logoUrl}/>
         </View>
         <Text style={styles.desc}>{desc}</Text>
     </View>

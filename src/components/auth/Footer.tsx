@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 
-export default ({btnTitle, desc, onPress}) => {
+export default ({btnTitle, desc, onPress}: {btnTitle: string, desc: string, onPress: any}) => {
 
     return(
         <View style={styles.footer}>
